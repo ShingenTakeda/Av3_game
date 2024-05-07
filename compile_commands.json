@@ -1,0 +1,11 @@
+[
+{
+  "directory": "/home/shingen/Documents/C++/AV3_game",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-Isrc", "-I", "/home/shingen/.xmake/packages/r/raygui/4.0/9d606ceee8cb49559023212a8fb08d54/include", "-I", "/home/shingen/.xmake/packages/r/raylib/5.0/aeed26e13a7a466f9d7c7ad6dd3b75c2/include", "-I", "/home/shingen/.xmake/packages/f/fmtlog/v2.2.1/35171e84418745579f939ce3de926227/include", "-I", "/home/shingen/.xmake/packages/f/fmt/10.2.1/0327b556927c46fcabb4dbd6ed4fb632/include", "-I", "/home/shingen/.xmake/packages/s/sol2/v3.3.0/ed14d3f6fd6848919b24915606479909/include", "-DNDEBUG", "-o", "build/.objs/AV3_game/linux/x86_64/release/src/main.cpp.o", "src/main.cpp"],
+  "file": "src/main.cpp"
+},
+{
+  "directory": "/home/shingen/Documents/C++/AV3_game",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-Isrc", "-I", "/home/shingen/.xmake/packages/r/raygui/4.0/9d606ceee8cb49559023212a8fb08d54/include", "-I", "/home/shingen/.xmake/packages/r/raylib/5.0/aeed26e13a7a466f9d7c7ad6dd3b75c2/include", "-I", "/home/shingen/.xmake/packages/f/fmtlog/v2.2.1/35171e84418745579f939ce3de926227/include", "-I", "/home/shingen/.xmake/packages/f/fmt/10.2.1/0327b556927c46fcabb4dbd6ed4fb632/include", "-I", "/home/shingen/.xmake/packages/s/sol2/v3.3.0/ed14d3f6fd6848919b24915606479909/include", "-DNDEBUG", "-o", "build/.objs/AV3_game/linux/x86_64/release/src/Base/Game.cpp.o", "src/Base/Game.cpp"],
+  "file": "src/Base/Game.cpp"
+}]
