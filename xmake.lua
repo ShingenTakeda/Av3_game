@@ -1,19 +1,20 @@
 add_rules("mode.debug", "mode.release")
-add_requires("raylib", "fmt", "raygui", "fmtlog", "sol2")
+add_requires("raylib", "joltphysics", "recastnavigation", "fmt", "raygui", "fmtlog", "sol2")
 
 target("AV3_game")
     set_kind("binary")
     add_files("src/*.cpp")
     add_files("src/*/*.cpp")
     add_includedirs("src")
-    add_packages("raylib", "fmt", "raygui", "fmtlog", "sol2")
+    add_packages("raylib", "fmt", "joltphysics", "raygui", "recastnavigation","fmtlog", "sol2")
 
 target("AV3_Editor")
     set_kind("binary")
     add_files("Editor/*.cpp")
     add_files("Editor/*/*.cpp")
     add_includedirs("src")
-    add_packages("raylib", "fmt", "raygui", "fmtlog", "sol2")
+    add_includedirs("Editor")
+    add_packages("raylib", "fmt", "raygui", "recastnavigation", "fmtlog", "sol2")
 
 
 --

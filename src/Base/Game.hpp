@@ -20,6 +20,9 @@ struct Game
   static constexpr int d_windowW = 720;
   static constexpr int d_windowH = 480;
 
+  Camera3D cam;
+  Vector3 cube_pos = {0.0f, 0.0f, 0.0f};
+
   int windowW;
   int windowH;
 

@@ -12,13 +12,35 @@ using ComponentMask = std::bitset<MAX_COMPONENTS>;
 typedef uint64_t EntityIndex;
 typedef uint64_t EntityVersion;
 
+inline EntityID CreateEntityId(EntityIndex index, EntityVersion version)
+{
+  // Shift the index up 32, and put the version in the bottom
+  return ((EntityID)index << 32) | ((EntityID)version);
+}
+inline EntityIndex GetEntityIndex(EntityID id)
+{
+  // Shift down 32 so we lose the version and get our index
+  return id >> 32;
+}
+inline EntityVersion GetEntityVersion(EntityID id)
+{
+  // Cast to a 32 bit int to get our version number (loosing the top 32 bits)
+  return (EntityVersion)id;
+}
+inline bool IsEntityValid(EntityID id)
+{
+  // Check if the index is our invalid index
+  return (id >> 32) != EntityIndex(-1);
+}
+
+#define INVALID_ENTITY CreateEntityId(EntityIndex(-1), 0)
+
 template <class T>
 int GetId()
 {
   static int s_componentID = s_componentCounter++;
   return s_componentID;
 }
-
 
 struct ComponentPool
 {
@@ -51,9 +73,11 @@ struct World
   };
 
   std::vector<EntityDesc> entities;
+  std::vector<EntityIndex> free_entites;
   std::vector<ComponentPool*> componentPools;
   
   EntityID NewEntity();
+  void DestroyEntity(EntityID id);
 
   template <typename T>
   void AssignComponent(EntityID id)
@@ -95,6 +119,4 @@ struct World
     T *pComponent = static_cast<T>(componentPools[componentId]->get(id));
     return pComponent;
   }
-
-
 };
