@@ -1,13 +1,16 @@
 #pragma once
+#include "entt/entity/fwd.hpp"
 #include <bitset>
 #include <cstddef>
 #include <cstdint>
 #include <vector>
+#include <entt/entt.hpp>
 
 extern int s_componentCounter;
 typedef uint64_t EntityID;
 const int MAX_COMPONENTS = 32;
 using ComponentMask = std::bitset<MAX_COMPONENTS>;
+using ECSWorld = entt::registry;
 
 typedef uint64_t EntityIndex;
 typedef uint64_t EntityVersion;

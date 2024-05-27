@@ -25,6 +25,8 @@ struct Game
 
   int windowW;
   int windowH;
+  int vResolutionW;
+  int vResolutionH;
 
   bool debug = false;
   bool is_running = false;
