@@ -1,16 +1,4 @@
-/*!*****************************************************************************
-* @file   MsgBusRepository.h
-*
-* @brief  Repository of all callable targets for specific bus.
-*
-* @author Evgeny Zavalkovsky
-*
-* @date   February 2014
-*******************************************************************************/
-
-#ifndef MSGBUSREPOSITORY_H_
-#define MSGBUSREPOSITORY_H_
-
+#pragma once
 #include <map>
 
 #include "MessageBusDefs.h"
@@ -19,30 +7,12 @@
 #include "SubscriberHandle.h"
 #include "MsgTypeContainer.h"
 
-/*!*****************************************************************************
-* @class MsgBusRepository
-*
-* @brief Repository of all callable targets for specific bus.
-*
-*******************************************************************************/
-
 class MsgBusRepository
 {
 public:
 
-  /*!***************************************************************************
-  *
-  * @brief Constructor.
-  *
-  *****************************************************************************/
-
   MsgBusRepository()  : operational( true ) {}
 
-  /*!***************************************************************************
-  *
-  * @brief Destructor.
-  *
-  *****************************************************************************/
   ~MsgBusRepository()
   {
     mutex.LockExclusive();
@@ -56,13 +26,6 @@ public:
 
     mutex.UnlockExclusive();
   }
-
-  /*!***************************************************************************
-  *
-  * @brief Subscribe.
-  *        Add new Subscriber to the repository.
-  *
-  *****************************************************************************/
 
   template < typename MSG_TYPE >
   SubscriberHandle Subscribe( Subscriber< MSG_TYPE > subscriber )
@@ -101,13 +64,6 @@ public:
     return handle;
   }
 
-  /*!***************************************************************************
-  *
-  * @brief UnSubscribe.
-  *        Remove subscriber from repository.
-  *
-  *****************************************************************************/
-
   void UnSubscribe( SubscriberHandle& handle )
   {
     mutex.LockExclusive();
@@ -138,13 +94,6 @@ public:
 
     mutex.UnlockExclusive();
   }
-
-  /*!***************************************************************************
-  *
-  * @brief Publish.
-  *        Publish message for all subscribers for MSG_TYPE.
-  *
-  *****************************************************************************/
 
   template < typename MSG_TYPE > void Publish( const MSG_TYPE& msg )
   {
@@ -186,7 +135,3 @@ private:
   /// Multiple Readers - Single Writer Lock.
   SharedMutex         mutex;
 };
-
-
-
-#endif /* MSGBUSREPOSITORY_H_ */

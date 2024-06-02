@@ -1,29 +1,8 @@
-/*!*****************************************************************************
-* @file   MsgTypeContainer.h
-*
-* @brief  Holds all callable targets of the specific MSG_TYPE.
-*
-* @author Evgeny Zavalkovsky
-*
-* @date   February 2014
-*******************************************************************************/
-
-#ifndef MSGTYPECONTAINER_H_
-#define MSGTYPECONTAINER_H_
-
+#pragma once
 #include <map>
 
 #include "MessageBusDefs.h"
 #include "SubscriberHandle.h"
-
-/*!*****************************************************************************
-* @class MsgTypeContainerBase
-*
-* @brief Non template base of MsgTypeContainer class
-*        Required for omitting template parameter dependency
-*        in MsgTypeContainer class
-*
-*******************************************************************************/
 
 class MsgTypeContainerBase
 {
@@ -40,60 +19,27 @@ public:
   virtual bool Empty() = 0;
 };
 
-/*!*****************************************************************************
-* @class MsgTypeContainer
-*
-* @brief Holds all callable targets of the specific MSG_TYPE
-*
-*******************************************************************************/
 
 template < typename MSG_TYPE >
 class MsgTypeContainer : public MsgTypeContainerBase
 {
 public:
 
-  /*!***************************************************************************
-  *
-  * @brief Add.
-  *        Add new callable target.
-  *
-  *****************************************************************************/
-
   void Add( SubscriberHandle handle, Subscriber< MSG_TYPE > subscriber  )
   {
     containerMap.insert( MsgBusContainerMapPair( handle, subscriber ) );
   }
-
-  /*!***************************************************************************
-  *
-  * @brief Remove.
-  *        Remove callable target.
-  *
-  *****************************************************************************/
 
   void Remove( SubscriberHandle handle )
   {
     containerMap.erase( handle );
   }
 
-  /*!***************************************************************************
-  *
-  * @brief Empty.
-  *        Check if container is empty.
-  *
-  *****************************************************************************/
-
   bool Empty()
   {
     return containerMap.empty();
   }
 
-  /*!***************************************************************************
-  *
-  * @brief Publish.
-  *        Publish message to all targets in conatiner.
-  *
-  *****************************************************************************/
   void Publish( const MSG_TYPE& msg )
   {
     for (auto& iter: containerMap )
@@ -128,5 +74,3 @@ private:
 
   MsgBusContainerMap containerMap;
 };
-
-#endif /* MSGTYPECONTAINER_H_ */
