@@ -1,4 +1,5 @@
 #pragma once
+#include "ECS/ECS.hpp"
 #include <filesystem>
 #include <raylib.h>
 #include <sol/sol.hpp>
@@ -30,6 +31,7 @@ struct Game
 
   bool debug = false;
   bool is_running = false;
+  ECSWorld world;
 };
 
 inline bool file_exists(const std::string &name)
