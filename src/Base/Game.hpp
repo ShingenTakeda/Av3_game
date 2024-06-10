@@ -1,10 +1,10 @@
 #pragma once
-#include "ECS/ECS.hpp"
 #include <filesystem>
-#include <raylib.h>
+#include <memory>
 #include <sol/sol.hpp>
 #include <string>
-
+#include <ECS/ECS.hpp>
+#include <MediaStore/MediaStorage.hpp>
 struct Game
 {
   void run();
@@ -16,21 +16,20 @@ struct Game
   void draw();
   void deinit();
 
+  void scene_loader(std::string scene);
+
   sol::state g_lstate;
-
-  static constexpr int d_windowW = 720;
-  static constexpr int d_windowH = 480;
-
-  Camera3D cam;
-  Vector3 cube_pos = {0.0f, 0.0f, 0.0f};
 
   int windowW;
   int windowH;
   int vResolutionW;
   int vResolutionH;
 
+  std::unique_ptr<MediaStorage> media_storage;
+
   bool debug = false;
   bool is_running = false;
+  bool scene_running = false;
   ECSWorld world;
 };
 

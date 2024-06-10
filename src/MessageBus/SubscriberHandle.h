@@ -5,7 +5,6 @@
 
 #include "TypeId.h"
 
-
 class SubscriberHandle
 {
 public:
@@ -37,12 +36,7 @@ public:
                                 : SubscriberHandle( GetTypeId< MSG_TYPE >() ) {}
 };
 
-bool operator <(SubscriberHandle const& lhs, SubscriberHandle const& rhs)
-{
-  return lhs.GetCounter() < rhs.GetCounter() ? true :
-            ( lhs.GetCounter() == rhs.GetCounter() ?
-                                    lhs.GetClock() < rhs.GetClock() : false ) ;
-}
+bool operator <(SubscriberHandle const& lhs, SubscriberHandle const& rhs);
 
 std::atomic< uint32_t > SubscriberHandle::commonCounter;
 

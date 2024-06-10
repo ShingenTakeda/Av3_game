@@ -1,19 +1,31 @@
 add_rules("mode.debug", "mode.release")
 add_requires("raylib", "entt", "joltphysics", "recastnavigation", "fmt", "raygui", "fmtlog", "sol2")
 
+target("rres")
+    set_kind("static")
+    add_files("extern/rres/src/*.c")
+    add_files("extern/rres/src/*/*.c")
+    add_includedirs("extern/rres/src")
+
 target("AV3_game")
     set_kind("binary")
     add_files("src/*.cpp")
     add_files("src/*/*.cpp")
+    add_deps("rres")
     add_includedirs("src")
+    add_includedirs("extern/rres/src/")
+    add_includedirs("extern/raylib-assetsys/")
     add_packages("raylib", "entt", "fmt", "joltphysics", "raygui", "recastnavigation","fmtlog", "sol2")
 
 target("AV3_Editor")
     set_kind("binary")
     add_files("Editor/*.cpp")
     add_files("Editor/*/*.cpp")
+    add_deps("rres")
     add_includedirs("src")
     add_includedirs("Editor")
+    add_includedirs("extern/rres/src")
+    add_includedirs("extern/raylib-assetsys/")
     add_packages("raylib", "fmt", "raygui", "recastnavigation", "fmtlog", "sol2")
 
 
